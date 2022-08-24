@@ -62,3 +62,6 @@ C:\Users\pranathiw\SampleProject\JwtWebApi\JwtWebApi\obj\Debug\net6.0\refint\Jwt
 C:\Users\pranathiw\SampleProject\JwtWebApi\JwtWebApi\obj\Debug\net6.0\JwtWebApi.pdb
 C:\Users\pranathiw\SampleProject\JwtWebApi\JwtWebApi\obj\Debug\net6.0\JwtWebApi.genruntimeconfig.cache
 C:\Users\pranathiw\SampleProject\JwtWebApi\JwtWebApi\obj\Debug\net6.0\ref\JwtWebApi.dll
+C:\Users\pranathiw\SampleProject\JwtWebApi\JwtWebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\pranathiw\SampleProject\JwtWebApi\JwtWebApi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\pranathiw\SampleProject\JwtWebApi\JwtWebApi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
