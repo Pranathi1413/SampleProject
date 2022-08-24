@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using JwtWebApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -12,7 +13,6 @@ namespace JwtWebApi.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        public static User user = new User();
         private readonly IConfiguration _configuration;
 
         public AuthController(IConfiguration configuration)
@@ -21,29 +21,39 @@ namespace JwtWebApi.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(UserDto request)
+        public ActionResult<User> Register(UserDto request)
         {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
-            user.Username = request.Username;
+            var userExist = UsersDataStore.Current.Users.FirstOrDefault(u => u.Username == request.Username);
+            if (userExist != null)
+            {
+                return BadRequest("Username taken");
+            }
 
-            return Ok(user);
+            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+            UsersDataStore.Current.Users.Add(new User()
+            {
+                Username = request.Username,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            });
+            
+            return NoContent();
 
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDto request)
+        public ActionResult<string> Login(UserDto request)
         {
-            if (user.Username != request.Username)
+            var userFound = UsersDataStore.Current.Users.FirstOrDefault(u=> u.Username == request.Username);
+            if (userFound == null)
             {
-                return BadRequest("User not found");
+                return NotFound();
             }
-            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            if (!VerifyPasswordHash(request.Password, userFound.PasswordHash, userFound.PasswordSalt))
             {
                 return BadRequest("Wrong password");
             }
-            string token = CreateToken(user);
+            string token = CreateToken(userFound);
             return Ok(token);
         }
 

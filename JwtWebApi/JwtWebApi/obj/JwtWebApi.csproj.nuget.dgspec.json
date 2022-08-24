@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pranathiw\\source\\repos\\JwtWebApi\\JwtWebApi\\JwtWebApi.csproj": {}
+    "C:\\Users\\pranathiw\\SampleProject\\JwtWebApi\\JwtWebApi\\JwtWebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pranathiw\\source\\repos\\JwtWebApi\\JwtWebApi\\JwtWebApi.csproj": {
+    "C:\\Users\\pranathiw\\SampleProject\\JwtWebApi\\JwtWebApi\\JwtWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pranathiw\\source\\repos\\JwtWebApi\\JwtWebApi\\JwtWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\pranathiw\\SampleProject\\JwtWebApi\\JwtWebApi\\JwtWebApi.csproj",
         "projectName": "JwtWebApi",
-        "projectPath": "C:\\Users\\pranathiw\\source\\repos\\JwtWebApi\\JwtWebApi\\JwtWebApi.csproj",
+        "projectPath": "C:\\Users\\pranathiw\\SampleProject\\JwtWebApi\\JwtWebApi\\JwtWebApi.csproj",
         "packagesPath": "C:\\Users\\pranathiw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pranathiw\\source\\repos\\JwtWebApi\\JwtWebApi\\obj\\",
+        "outputPath": "C:\\Users\\pranathiw\\SampleProject\\JwtWebApi\\JwtWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pranathiw\\AppData\\Roaming\\NuGet\\NuGet.Config",
