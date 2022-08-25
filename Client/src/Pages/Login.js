@@ -24,6 +24,7 @@ const onLogin = (username, password) => {
       console.log(res);
     })
 
+<<<<<<< HEAD
     // Catch errors if any
     .catch((err) => {});
 };
@@ -32,6 +33,44 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
+=======
+const onLogin = (username , password) => {
+    axios({
+  
+        // Endpoint to send files
+        url: "https://localhost:7290/api/Auth/login",
+        method: "POST",
+        headers:{
+            'Access-Control-Allow-Origin' : '*',
+            'Accept': 'application/json',
+            'Content-Type' : "application/json"
+        },
+    
+    
+        // Attaching the form data
+        data: {
+            username: username,
+            password: password
+        },
+      })
+    
+        // Handle the response from backend here
+        .then((res) => {
+            console.log(res);
+         })
+    
+        // Catch errors if any
+        .catch((err) => {
+            console.log(err)
+         });
+    
+}
+function Login(){
+    const navigate = useNavigate();
+    const [username, setUsername] = useState("")
+    const [password , setPassword] = useState("")
+ return (
+>>>>>>> ab8cfcbbef41249bccd1e04c5e3c4cabc057d9fd
     <div className="login">
       <h1>Login</h1>
       <form className="loginForm">
