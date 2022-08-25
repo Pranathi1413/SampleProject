@@ -43,8 +43,9 @@ namespace JwtWebApi.Controllers
         }
 
         [HttpPost("login")]
-        public ActionResult<string> Login(UserDto request)
+        public ActionResult<string> Login([FromBody]UserDto request)
         {
+            Console.WriteLine("login:" + request.ToString());
             var userFound = UsersDataStore.Current.Users.FirstOrDefault(u=> u.Username == request.Username);
             if (userFound == null)
             {

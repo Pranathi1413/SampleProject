@@ -13,14 +13,15 @@ const onLogin = (username , password) => {
         method: "POST",
         headers:{
             'Access-Control-Allow-Origin' : '*',
-            'Content-Type' : "application-json"
+            'Accept': 'application/json',
+            'Content-Type' : "application/json"
         },
     
     
         // Attaching the form data
         data: {
-            "username" : username ,
-            "password" : password
+            username: username,
+            password: password
         },
       })
     
@@ -30,7 +31,9 @@ const onLogin = (username , password) => {
          })
     
         // Catch errors if any
-        .catch((err) => { });
+        .catch((err) => {
+            console.log(err)
+         });
     
 }
 function Login(){
