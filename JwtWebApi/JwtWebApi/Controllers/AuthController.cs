@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 
 namespace JwtWebApi.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
