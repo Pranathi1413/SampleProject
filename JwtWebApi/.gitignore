@@ -1,1 +1,3 @@
 .vs/*
+JwtWebApi/bin/*
+JwtWebApi/obj/*
