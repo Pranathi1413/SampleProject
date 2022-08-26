@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import ProfileCard from "../Components/ProfileCard";
-import dummydata from "../data";
+// import dummydata from "../data";
 import axios from "axios";
 
 function Allusers() {
