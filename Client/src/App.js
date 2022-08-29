@@ -1,23 +1,21 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 import './App.css';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-import Header from './Components/Header';
-import ProfileCard from './Components/ProfileCard';
 
-function App() {
+function App(props) {
 
   const [signinButtonState , setSigninButtonState] = useState("false");
-  
+  console.log(props)
   return (
     
       <div className="App">
         <div className='loginRegisterBox'>
           <div className='welcomeBox'>
             <h1> Welcome to users page !</h1>
-            <button onClick={ () => {
+            <button onClick={ (e) => {
+              e.preventDefault();
               setSigninButtonState(!signinButtonState);
               console.log(signinButtonState)
             }}> {signinButtonState ? "Don't have an account? Signup" : "Login"}</button>
@@ -31,5 +29,7 @@ function App() {
     
   );
 }
+
+
 
 export default App;

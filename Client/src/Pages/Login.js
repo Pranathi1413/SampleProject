@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { setJwt } from "../Actions/userActions";
+import { connect  } from 'react-redux'
 
-const onLogin = (username, password) => {
-  axios({
+const onLogin = async (username, password, props) => {
+  const res = await axios({
     // Endpoint to send files
     url: "https://localhost:7290/api/Auth/login",
     method: "POST",
@@ -19,18 +21,14 @@ const onLogin = (username, password) => {
       password: password,
     },
   })
-    // Handle the response from backend here
-    .then((res) => {
-      console.log(res.data);
-    })
+    
+  console.log(res.data);
+  await props.setJwtDispatch(res.data);
 
-    // Catch errors if any
-    .catch((err) => {
-      console.log(err);
-    });
+    
 };
 
-function Login() {
+function Login(props) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -60,9 +58,11 @@ function Login() {
         </div>
         <button
           className="loginButton"
-          onClick={() => {
-            onLogin(username, password);
-            navigate("/user");
+          onClick={async (e) => {
+            e.preventDefault();
+            await onLogin(username, password, props);
+            console.log("after login", props)
+            navigate("/user")
           }}
         >
           {" "}
@@ -73,4 +73,17 @@ function Login() {
   );
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    jwt: state.userJwt
+  }
+  
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setJwtDispatch: (jwt) => dispatch(setJwt(jwt))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

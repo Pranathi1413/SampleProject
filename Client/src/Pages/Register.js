@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom'
 
 const onRegister = (username, password) => {
   axios({
@@ -29,7 +30,8 @@ const onRegister = (username, password) => {
     });
 };
 
-function Register() {
+function Register(props) {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -60,8 +62,10 @@ function Register() {
         </div>
         <button
           className="registerButton"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             onRegister(username, password);
+            navigate("/login")
           }}
         >
           register

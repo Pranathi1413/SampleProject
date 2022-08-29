@@ -3,10 +3,9 @@ import "../App.css";
 import ProfileCard from "../Components/ProfileCard";
 // import dummydata from "../data";
 import axios from "axios";
+import {connect} from 'react-redux'
 
-function Allusers() {
-  const authToken =
-    "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVzdDIiLCJleHAiOjE2NjE1MDM4OTV9.1Gc33wCoQJl652ezULI4YWC7Qg4J13oGIl_bEMyQ5HET8Q2z-7RfW5x1zigao6XQIvH28yttMoCM3GcbFy4r9w";
+function Allusers(props) {
   const [result, setResult] = useState([]);
   useEffect(() => {
     axios({
@@ -14,7 +13,7 @@ function Allusers() {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "*",
-        Authorization: `Bearer ${authToken}`,
+        Authorization: `Bearer ${props.jwt}`,
         "Content-Type": "application/json",
       },
     })
@@ -28,10 +27,16 @@ function Allusers() {
   return (
     <div className="allUsersBox">
       {result.map((user) => {
-        return <ProfileCard props={user} />;
+        return <ProfileCard key={user.username} props={user} />;
       })}
     </div>
   );
 }
 
-export default Allusers;
+const mapStateToProps = (state) => {
+  return {
+    jwt: state.userJwt
+  }
+}
+
+export default connect(mapStateToProps)(Allusers);
